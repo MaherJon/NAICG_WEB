@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAICG计划 - 坚守学术本真，彰显人性光辉</title>
+    <style>
+        /* 全局样式重置与基础配置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "SF Pro", "Helvetica", "Arial", "PingFang SC", "微软雅黑", "思源黑体", sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        :root {
+            /* 配色变量 */
+            --deep-gray: #333333;
+            --light-gray: #888888;
+            --silver-gray: #F5F5F7;
+            --pearl-white: #FFFFFF;
+            --tech-blue: #0071E3;
+            --tech-blue-hover: #0057B8;
+            /* 阴影变量 */
+            --light-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            --hover-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            /* 圆角变量 */
+            --border-radius: 12px;
+        }
+
+        body {
+            background-color: var(--pearl-white);
+            color: var(--deep-gray);
+            line-height: 1.5;
+            padding-top: 80px; /* 预留导航栏高度 */
+        }
+
+        /* 导航栏样式 */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--pearl-white);
+            box-shadow: var(--light-shadow);
+            z-index: 999;
+            padding: 0 20px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-container.shrink {
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--deep-gray);
+            border-radius: 8px; /* 简约Logo占位 */
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--deep-gray);
+        }
+
+        .nav-container.shrink .logo-text {
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-link {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--deep-gray);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-container.shrink .nav-link {
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            color: var(--tech-blue);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background-color: var(--deep-gray);
+        }
+
+        /* Hero区样式 */
+        .hero {
+            background-color: var(--silver-gray);
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--deep-gray);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--light-gray);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .hero-slogan {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--tech-blue);
+            margin-bottom: 30px;
+        }
+
+        .hero-btn {
+            background-color: var(--tech-blue);
+            color: var(--pearl-white);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .hero-btn:hover {
+            background-color: var(--tech-blue-hover);
+            box-shadow: var(--hover-shadow);
+            transform: translateY(-2px);
+        }
+
+        /* 通用板块样式 */
+        .section {
+            width: 80%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--deep-gray);
+            margin-top: 80px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .card {
+            background-color: var(--pearl-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--light-shadow);
+            padding: 40px 50px;
+        }
+
+        /* 计划理念板块 */
+        .concept-text {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--deep-gray);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* 核心主张板块 */
+        .propositions-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .proposition-card {
+            padding: 30px;
+        }
+
+        .proposition-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--tech-blue);
+            margin-bottom: 15px;
+        }
+
+        .proposition-text {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--deep-gray);
+            line-height: 1.5;
+        }
+
+        /* 关于MAHE板块 */
+        .mahe-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .mahe-text {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--deep-gray);
+            line-height: 1.5;
+        }
+
+        .mahe-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .mahe-icon {
+            width: 48px;
+            height: 48px;
+            border: 2px solid var(--deep-gray);
+            border-radius: 8px; /* 简约图标占位 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-gray);
+            font-size: 20px;
+        }
+
+        /* 版权区样式 */
+        .copyright {
+            background-color: var(--deep-gray);
+            color: var(--pearl-white);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 300;
+            margin-top: 80px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 响应式适配 - 平板端 (768px - 991px) */
+        @media (max-width: 991px) {
+            .section {
+                width: 90%;
+            }
+
+            .propositions-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mahe-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .mahe-icons {
+                margin-top: 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+        }
+
+        /* 响应式适配 - 移动端 (<768px) */
+        @media (max-width: 767px) {
+            body {
+                padding-top: 60px;
+            }
+
+            .nav-container {
+                height: 60px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--pearl-white);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 20px;
+                box-shadow: var(--light-shadow);
+                transform: translateY(-150%);
+                opacity: 0;
+            }
+
+            .nav-links.show {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 20px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .card {
+                padding: 30px 20px;
+            }
+
+            .propositions-container {
+                grid-template-columns: 1fr;
+            }
+
+            .mahe-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .copyright {
+                font-size: 12px;
+                height: auto;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="nav-container" id="navbar">
+        <div class="logo">
+            <div class="logo-icon"></div>
+            <span class="logo-text">NAICG (Not AICG)</span>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+        <nav class="nav-links" id="navLinks">
+            <a class="nav-link" href="#hero">首页</a>
+            <a class="nav-link" href="#concept">计划理念</a>
+            <a class="nav-link" href="#propositions">核心主张</a>
+            <a class="nav-link" href="#about-mahe">关于MAHE</a>
+        </nav>
+    </header>
+
+    <!-- Hero区 -->
+    <section class="hero" id="hero">
+        <h1 class="hero-title">NAICG</h1>
+        <p class="hero-subtitle">Not AICG · 坚守学术本真，彰显人性光辉</p>
+        <p class="hero-slogan">MAHE · 以诚信正直，守护学术纯粹</p>
+        <button class="hero-btn" onclick="scrollToSection('concept')">了解计划</button>
+    </section>
+
+    <!-- 计划理念板块 -->
+    <section class="section concept" id="concept">
+        <h2 class="section-title">计划理念</h2>
+        <div class="card">
+            <p class="concept-text">
+                NAICG，全称Not AICG，是MAHE公司专为反对学术界使用AICG开展学术研究而创建的专项计划。我们深知，学术研究的核心是人类思维的探索、创新与沉淀，是诚信正直的治学态度，而AICG的滥用，会消解学术研究的本质，弱化人类思维的独特价值，违背学术诚信的底线。
+            </p>
+            <p class="concept-text">
+                我们发起NAICG计划，并非否定科技的进步，而是坚守学术的本真——坚信人性思维的光辉，坚守诚信正直的治学原则，呼吁学术界回归理性，以严谨、务实、创新的态度开展研究，守护学术的纯粹与尊严，让每一项研究都源于人类的思考与探索，彰显人类智慧的价值。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心主张板块 -->
+    <section class="section propositions" id="propositions">
+        <h2 class="section-title">核心主张</h2>
+        <div class="propositions-container">
+            <div class="card proposition-card">
+                <h3 class="proposition-title">反对学术AICG滥用</h3>
+                <p class="proposition-text">
+                    坚决反对将AICG用于学术论文撰写、数据伪造、研究成果生成等学术活动，杜绝学术不端行为，守护学术研究的真实性与严肃性。
+                </p>
+            </div>
+            <div class="card proposition-card">
+                <h3 class="proposition-title">坚守诚信正直</h3>
+                <p class="proposition-text">
+                    以诚信为核心，引导学术界从业者坚守治学底线，秉持实事求是的态度，尊重学术规律，不投机取巧，不弄虚作假，传递学术正能量。
+                </p>
+            </div>
+            <div class="card proposition-card">
+                <h3 class="proposition-title">彰显人性思维</h3>
+                <p class="proposition-text">
+                    坚信人类思维的独特性、创新性与深度，推崇人类自主思考、探索未知的能力，让学术研究成为人类智慧的结晶，而非科技工具的产物。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于MAHE板块 -->
+    <section class="section about-mahe" id="about-mahe">
+        <h2 class="section-title">关于MAHE</h2>
+        <div class="card mahe-container">
+            <div class="mahe-text">
+                MAHE公司始终秉持“诚信、创新、责任”的核心价值观，深耕科技与学术领域，致力于推动行业规范发展。发起NAICG计划，是MAHE践行社会责任的重要举措，我们将持续呼吁学术界坚守学术本真，共同守护人性思维的光辉与学术的纯粹。
+            </div>
+            <div class="mahe-icons">
+                <div class="mahe-icon">诚</div>
+                <div class="mahe-icon">创</div>
+                <div class="mahe-icon">责</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部版权区 -->
+    <footer class="copyright">
+        © MAHE公司 版权所有 | NAICG计划 · Not AICG 坚守学术本真
+    </footer>
+
+    <script>
+        // 导航栏滚动收缩效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shrink');
+            } else {
+                navbar.classList.remove('shrink');
+            }
+        });
+
+        // 移动端汉堡菜单交互
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // 点击导航/按钮滚动到对应板块
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+            // 移动端点击后关闭菜单
+            if (navLinks.classList.contains('show')) {
+                navLinks.classList.remove('show');
+            }
+        }
+
+        // 导航链接点击事件
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = e.target.getAttribute('href').slice(1);
+                scrollToSection(targetId);
+            });
+        });
+    </script>
+</body>
+</html>
