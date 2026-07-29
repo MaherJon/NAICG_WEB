@@ -1,2 +1,2 @@
 # NAICG_WEB
-a web about Not AICG plan
+a web about Not AIGC plan
